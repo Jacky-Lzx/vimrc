@@ -1,53 +1,89 @@
-call plug#begin('~/.vim/plugged')
+source $VIMRUNTIME/defaults.vim
+source $VIMRUNTIME/defaults.vim
+
+call plug#begin('~/vimfiles/plugged')
 Plug 'itchyny/lightline.vim'
+Plug 'artanikin/vim-synthwave84'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 set laststatus=2
 let g:lightline={ 'colorscheme': 'powerline',}
 
 
-
-" Open syntax highlight
+" syntax
 syntax on
 
-set showmatch
-" Auto jump to the first math when typing in search mode
-set incsearch
-" Highlight the search result
-set hlsearch
+" history : how many lines of history VIM has to remember
+set history=2000 
 
-" show line number
-set number
-" show relative line number according to current line
-set relativenumber
-" highlight current line
+" filetype
+filetype on 
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+
+" base
+set nocompatible                " don't bother with vi compatibility
+set autoread                    " reload files when changed on disk, i.e. via `git checkout`
+set magic                       " For regular expressions turn magic on
+set title                       " change the terminal's title
+set nobackup                    " do not keep a backup file
+
+set errorbells
+set novisualbell
+
+" show location
+set cursorcolumn
 set cursorline
-" Not success, don't know why
-" autocmd ColorScheme * highlight! CursorLineNr cterm=bold ctermfg=159 ctermbg=236 guibg=Grey90
 
 set smartindent
 set tabstop=4
-set softtabstop=4
-" change tab to spaces
-set expandtab
+set softtabstop=4 
+set expandtab                   " change tab to spaces
+set smarttab
+set shiftround
 set shiftwidth=4
-" Not compatible with vi commands
-set nocompatible
+
+" movement
+set scrolloff=5                 " keep 5 lines when scrolling
+
+" show
+set ruler                       " show the current row and column
+set number                      " show line numbers
+set relativenumber
+set nowrap
+set showcmd                     " display incomplete commands
+set showmode                    " display current modes
+set showmatch                   " jump to matches when entering parentheses
+set matchtime=2                 " tenths of a second to show the matching parenthesis
+
+
+" encoding
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set termencoding=utf-8
+set ffs=unix,dos,mac
+set formatoptions+=m
+set formatoptions+=B
+
+" Note CTRL-I is the same as <Tab>
+" to solve the problem that backspace cannot delete things
 set backspace=indent,eol,start
+set smartcase
+" Highlight search results when searching
+set hlsearch
+set incsearch
 
-" Set 256 color
-set t_Co=256
-" check the file type and use corresponding indent strategy
-filetype indent on
+" set t_Co=256
+if has("termguicolors")
+    set termguicolors
+endif
 
-" No bells when error happens
-" set noerrorbells
-" SHow visual effects when error happens
-" set visualbell
+set guifont=Consolas:h13:cANSI:qDRAFT
+colorscheme synthwave84
 
-" The trailing space will become visible
-set listchars=tab:<->,trail:-
-set list
-
-" lzx custom scheme
-hi Normal ctermfg=252 ctermbg=none
+" run command under current dir
+set autochdir

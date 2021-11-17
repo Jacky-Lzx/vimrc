@@ -1,16 +1,23 @@
 source $VIMRUNTIME/defaults.vim
-source $VIMRUNTIME/defaults.vim
 
 call plug#begin('~/vimfiles/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'artanikin/vim-synthwave84'
 " Plug 'Valloric/YouCompleteMe'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 set laststatus=2
 let g:lightline={ 'colorscheme': 'powerline',}
 
+noremap K 5k
+noremap J 5j
+noremap H 5h
+noremap L 5l
+
+inoremap í $$<Esc>i
+
+set mouse=
 
 " syntax
 syntax on
@@ -84,6 +91,8 @@ endif
 
 set guifont=Consolas:h13:cANSI:qDRAFT
 colorscheme synthwave84
+
+highlight Search guibg=peru
 
 " run command under current dir
 set autochdir
